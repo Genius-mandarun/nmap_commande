@@ -1,9 +1,9 @@
 # 🔍 Guide d’Introduction à Nmap
 
 ## 📌 Version
-- **Version du document** : 1.0  
-- **Dernière mise à jour** : 14/09/2025  
-- **Outil étudié** : [Nmap](https://nmap.org/) – Network Mapper
+![Version](https://img.shields.io/badge/version-1.0-blue?style=flat&logo=git)
+![Mise à jour](https://img.shields.io/badge/last_update-14/09/2025-green?style=flat&logo=github)
+![Nmap](https://img.shields.io/badge/tool-Nmap-yellow?style=flat&logo=linux)
 
 ---
 
