@@ -6,7 +6,30 @@
 ![Nmap](https://img.shields.io/badge/tool-Nmap-yellow?style=flat&logo=linux)
 
 ---
-
+## 📂 Table des matières
+1. [Introduction à Nmap](#-introduction)  
+2. [Installation de Nmap](#-installation-de-nmap)  
+3. [Premiers pas avec Nmap](#-premiers-pas-avec-nmap)  
+   - 3.1 Scan basique d’une IP  
+   - 3.2 Scan d’un domaine  
+   - 3.3 Scan d’une plage d’adresses  
+4. [Options importantes de Nmap](#-options-importantes-de-nmap)  
+   - 4.1 Scan de ports spécifiques (-p)  
+   - 4.2 Détection de services et versions (-sV)  
+   - 4.3 Détection d’OS (-O)  
+   - 4.4 Scan furtif (SYN Scan, -sS) 
+   - 4.5 Scan UDP (-sU)  
+5. [Exportation et reporting](#-exportation-et-reporting)  
+6. [Scripts NSE (Nmap Scripting Engine)](#-scripts-nse-nmap-scripting-engine)  
+   - 6.1 Utilisation de scripts prédéfinis  
+   - 6.2 Détection de vulnérabilités  
+7. [Cas pratiques](#-cas-pratiques)  
+   - 7.1 Analyse d’un réseau local  
+   - 7.2 Scan d’un site web  
+   - 7.3 Recherche de failles connues  
+8. [Bonnes pratiques & limites](#-bonnes-pratiques--limites)  
+9. [Ressources utiles](#-ressources-utiles)  
+---
 ## 📖 Introduction
 **Nmap** (Network Mapper) est un outil très connu en cybersécurité et en administration réseau.
 Il sert principalement à analyser un réseau et à découvrir les machines et services qui s’y trouvent.
@@ -37,33 +60,6 @@ Sinon, cela peut être considéré comme une tentative d’attaque.
 - Approfondir avec des techniques avancées de scan utiles en pentesting.  
 
 ---
-
-## 📂 Table des matières
-1. [Introduction à Nmap](#-introduction)  
-2. [Installation de Nmap](#-installation-de-nmap)  
-3. [Premiers pas avec Nmap](#-premiers-pas-avec-nmap)  
-   - 3.1 Scan basique d’une IP  
-   - 3.2 Scan d’un domaine  
-   - 3.3 Scan d’une plage d’adresses  
-4. [Options importantes de Nmap](#-options-importantes-de-nmap)  
-   - 4.1 Scan de ports spécifiques (-p)  
-   - 4.2 Détection de services et versions (-sV)  
-   - 4.3 Détection d’OS (-O)  
-   - 4.4 Scan furtif (SYN Scan, -sS) 
-   - 4.5 Scan UDP (-sU)  
-5. [Exportation et reporting](#-exportation-et-reporting)  
-6. [Scripts NSE (Nmap Scripting Engine)](#-scripts-nse-nmap-scripting-engine)  
-   - 6.1 Utilisation de scripts prédéfinis  
-   - 6.2 Détection de vulnérabilités  
-7. [Cas pratiques](#-cas-pratiques)  
-   - 7.1 Analyse d’un réseau local  
-   - 7.2 Scan d’un site web  
-   - 7.3 Recherche de failles connues  
-8. [Bonnes pratiques & limites](#-bonnes-pratiques--limites)  
-9. [Ressources utiles](#-ressources-utiles)  
-
----
-
 ## 🛠️ Installation de Nmap
 ### 📌 Sur Kali Linux / Debian / Ubuntu
 ```bash
