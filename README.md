@@ -188,3 +188,27 @@ C’est l’équivalent d’un “ping sweep” : balayer une plage d’adresses
 - Pour 80% des cas → utilise -sS (rapide + discret).
 - Pour UDP → combine -sS -sU.
 - Pour furtivité → pense au -sI (idle scan).
+
+---
+## Détection de services et de versions
+
+---
+## Détection OS 
+
+---
+## Nmap Scripting Engine (NSE)
+
+---
+## Timing et Performances
+
+---
+## Évitement de pare-feux/IDS et mystification
+
+---
+## Comptes rendus
+
+---
+## Interaction à la volée
+
+---
+## 
