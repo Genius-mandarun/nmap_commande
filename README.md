@@ -6,30 +6,6 @@
 ![Nmap](https://img.shields.io/badge/tool-Nmap-yellow?style=flat&logo=linux)
 
 ---
-## 📂 Table des matières
-1. [Introduction à Nmap](#-introduction)  
-2. [Installation de Nmap](#-installation-de-nmap)  
-3. [Premiers pas avec Nmap](#-premiers-pas-avec-nmap)  
-   - 3.1 Scan basique d’une IP  
-   - 3.2 Scan d’un domaine  
-   - 3.3 Scan d’une plage d’adresses 
-4. [Options importantes de Nmap](#-options-importantes-de-nmap)  
-   - 4.1 Scan de ports spécifiques (-p)  
-   - 4.2 Détection de services et versions (-sV)  
-   - 4.3 Détection d’OS (-O)  
-   - 4.4 Scan furtif (SYN Scan, -sS) 
-   - 4.5 Scan UDP (-sU)  
-5. [Exportation et reporting](#-exportation-et-reporting)  
-6. [Scripts NSE (Nmap Scripting Engine)](#-scripts-nse-nmap-scripting-engine)  
-   - 6.1 Utilisation de scripts prédéfinis  
-   - 6.2 Détection de vulnérabilités  
-7. [Cas pratiques](#-cas-pratiques)  
-   - 7.1 Analyse d’un réseau local  
-   - 7.2 Scan d’un site web  
-   - 7.3 Recherche de failles connues  
-8. [Bonnes pratiques & limites](#-bonnes-pratiques--limites)  
-9. [Ressources utiles](#-ressources-utiles)  
----
 ## 📖 Introduction
 **Nmap** (Network Mapper) est un outil très connu en cybersécurité et en administration réseau.
 Il sert principalement à analyser un réseau et à découvrir les machines et services qui s’y trouvent.
@@ -92,3 +68,72 @@ nmap --version
 brew install nmap
 ```
 - Sinon, télécharger depuis : https://nmap.org/download.html
+
+---
+## Spécification des cibles
+- Tout ce que tu mets après nmap (sans tiret -) est considéré comme une cible.
+- Ça peut être : une IP, un nom de domaine, une plage d’IP, ou un fichier de liste d’IP.
+  
+A. **scan simple**:
+<img width="951" height="510" alt="image" src="https://github.com/user-attachments/assets/b3c16ec4-778f-4876-913a-2e7f2d5dde00" />
+
+**👉 Discrétion**: très basique, rien de furtif, on annonce clairement qu’on scanne.
+
+B. **CIDR (notation réseau**
+<img width="948" height="680" alt="image" src="https://github.com/user-attachments/assets/60ae3dc6-78eb-4b81-8301-7e7010d26201" />
+
+---
+## Découverte des hôtes (Host Discovery)
+**👉 Objectif**: trouver quelles IP sont actives sur un réseau.
+C’est l’équivalent d’un “ping sweep” : balayer une plage d’adresses et repérer qui répond.
+
+- **-sL** : Liste simple
+   - Ce que ça fait : affiche seulement la liste des IP (et noms DNS si dispo).
+   - Discrétion : ⭐⭐⭐⭐⭐ (totalement discret, aucun paquet envoyé).
+   - Utilité : vérifier ta syntaxe avant un vrai scan.
+
+- **-sn** : Ping scan
+   - Envoie un ping ICMP sur le port par defaut TCP/80 pour voir qui est en ligne.
+   - Il est peu visible dans les logs
+
+- **-Pn** : Pas de ping
+     - suppose que toutes les machines sont actives et lance directement un scan complet.
+     - très bruyant, car tu touches tout
+     - utile si le réseau bloque les pings ICMP.
+
+- **-PS** : Ping TCP SYN
+     - envoie des paquets SYN (comme pour initier une connexion). Si la cible répond (SYN/ACK ou RST), elle est active.
+     - contourner les pare-feux qui bloquent ICMP mais pas TCP.
+
+- **-PA** : Ping TCP ACK
+   - envoie un paquet ACK (comme si une connexion existait déjà). La cible répond souvent par un RST.
+   - plus discret que SYN, utile contre certains pare-feux
+   - contourner les firewalls qui bloquent les SYN mais laissent passer les ACK.
+
+- **-PU** : Ping UDP
+   - envoie un paquet UDP vide.
+        - Si le port est fermé → la cible renvoie un ICMP port unreachable.
+        - Si le port est ouvert → souvent aucune réponse.
+   - détecter des hôtes derrière un firewall qui filtre TCP mais pas UDP.
+
+- **-PE, -PP, -PM** : Ping ICMP
+   - Envoie différents types de pings ICMP.
+   - facilement bloqué par pare-feux
+   - tester si certains types d’ICMP passent alors que d’autres sont bloqués.
+
+- **-PR** : Ping ARP (Lan local)
+   - Envoie des requêtes ARP → ultra efficace sur un réseau local.
+   - méthode la plus fiable pour un réseau LAN.
+
+- **-PO** : Ping par protocole IP
+   - envoie des paquets IP avec différents protocoles (ICMP, IGMP, etc.).
+   - peu commun, peut passer inaperçu sur certains IDS
+   - détecter des hôtes même quand TCP et ICMP sont bloqués.
+
+- **reason** : Pourquoi la cible est considérée active
+   - indique pourquoi une machine est marquée active (ex : réponse ICMP, RST, SYN/ACK).
+   - comprendre comment Nmap a détecté un hôte.
+
+---
+ ## Les 6 états de ports dans Nmap
+ 
