@@ -65,3 +65,34 @@ Sinon, cela peut être considéré comme une tentative d’attaque.
 ---
 
 ## 🛠️ Installation de Nmap
+### 📌 Sur Kali Linux / Debian / Ubuntu
+```bash
+sudo apt update
+sudo apt install nmap -y
+```
+➡️ Vérifier l’installation :
+```bash
+nmap --version
+```
+### 📌 Sur Fedora / CentOS / Red Hat
+```bash
+sudo dnf install nmap -y
+```
+ou
+```bash
+sudo yum install nmap -y
+```
+### 📌 Sur Windows
+- Télécharger depuis le site officiel : https://nmap.org/download.html
+- Lancer l’installateur (inclut Zenmap, interface graphique).
+- Ouvrir cmd ou PowerShell et taper:
+```bash
+nmap --version
+```
+
+### 📌 Sur macOS
+- Avec Homebrew :
+```bash
+brew install nmap
+```
+- Sinon, télécharger depuis : https://nmap.org/download.html
