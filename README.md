@@ -8,15 +8,24 @@
 ---
 
 ## 📖 Introduction
-Nmap (**Network Mapper**) est un outil open-source puissant utilisé pour :  
-- La **découverte d’hôtes** sur un réseau.  
-- L’**analyse des ports** ouverts.  
-- La **détection des services** et versions en cours d’exécution.  
-- L’**identification du système d’exploitation** et des vulnérabilités potentielles.  
+**Nmap** (Network Mapper) est un outil très connu en cybersécurité et en administration réseau.
+Il sert principalement à analyser un réseau et à découvrir les machines et services qui s’y trouvent.
 
-Il est largement utilisé en **administration système**, **cybersécurité** et surtout en **pentesting**, car il permet de collecter des informations précieuses sur les machines cibles.  
+**On l’utilise pour :**
+- Savoir quels ordinateurs sont connectés sur un réseau.
+- Découvrir quels ports (portes de communication) sont ouverts ou fermés.
+- Identifier les services en cours d’exécution (exemple : serveur web, serveur FTP, SSH…).
+- Avoir parfois une idée du système d’exploitation utilisé (Windows, Linux, etc.).
 
-L’objectif de ce guide est d’apprendre progressivement les commandes et options les plus importantes de Nmap, de la base vers l’avancé.
+En résumé, **Nmap est comme une lampe torche pour voir ce qui se cache sur un réseau.
+C’est pour cela qu’il est indispensable pour les :
+
+- **🔐 Pentesters** (testeurs de sécurité)
+- **👨‍💻 Administrateurs** systèmes/réseaux
+- **🧑‍🎓 Étudiants en cybersécurité.**
+
+**⚠️ Attention**: Nmap doit être utilisé uniquement sur des réseaux que tu as l’autorisation de scanner.
+Sinon, cela peut être considéré comme une tentative d’attaque.
 
 ---
 
@@ -56,21 +65,3 @@ L’objectif de ce guide est d’apprendre progressivement les commandes et opti
 ---
 
 ## 🛠️ Installation de Nmap
-**Nmap** (Network Mapper) est un outil très connu en cybersécurité et en administration réseau.
-Il sert principalement à analyser un réseau et à découvrir les machines et services qui s’y trouvent.
-
-**On l’utilise pour :**
-- Savoir quels ordinateurs sont connectés sur un réseau.
-- Découvrir quels ports (portes de communication) sont ouverts ou fermés.
-- Identifier les services en cours d’exécution (exemple : serveur web, serveur FTP, SSH…).
-- Avoir parfois une idée du système d’exploitation utilisé (Windows, Linux, etc.).
-
-En résumé, **Nmap est comme une lampe torche pour voir ce qui se cache sur un réseau.
-C’est pour cela qu’il est indispensable pour les :
-
-- **🔐 Pentesters** (testeurs de sécurité)
-- **👨‍💻 Administrateurs** systèmes/réseaux
-- **🧑‍🎓 Étudiants en cybersécurité.**
-
-**⚠️ Attention**: Nmap doit être utilisé uniquement sur des réseaux que tu as l’autorisation de scanner.
-Sinon, cela peut être considéré comme une tentative d’attaque.
