@@ -49,7 +49,7 @@ Sinon, cela peut être considéré comme une tentative d’attaque.
    - 4.1 Scan de ports spécifiques (-p)  
    - 4.2 Détection de services et versions (-sV)  
    - 4.3 Détection d’OS (-O)  
-   - 4.4 Scan furtif (SYN Scan, -sS)  
+   - 4.4 Scan furtif (SYN Scan, -sS) 
    - 4.5 Scan UDP (-sU)  
 5. [Exportation et reporting](#-exportation-et-reporting)  
 6. [Scripts NSE (Nmap Scripting Engine)](#-scripts-nse-nmap-scripting-engine)  
