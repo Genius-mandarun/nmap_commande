@@ -12,7 +12,7 @@
 3. [Premiers pas avec Nmap](#-premiers-pas-avec-nmap)  
    - 3.1 Scan basique d’une IP  
    - 3.2 Scan d’un domaine  
-   - 3.3 Scan d’une plage d’adresses  
+   - 3.3 Scan d’une plage d’adresses 
 4. [Options importantes de Nmap](#-options-importantes-de-nmap)  
    - 4.1 Scan de ports spécifiques (-p)  
    - 4.2 Détection de services et versions (-sV)  
