@@ -56,8 +56,21 @@ L’objectif de ce guide est d’apprendre progressivement les commandes et opti
 ---
 
 ## 🛠️ Installation de Nmap
-Sur **Kali Linux**, Nmap est généralement préinstallé.  
-Sinon, installez-le avec :  
+**Nmap** (Network Mapper) est un outil très connu en cybersécurité et en administration réseau.
+Il sert principalement à analyser un réseau et à découvrir les machines et services qui s’y trouvent.
 
-```bash
-sudo apt update && sudo apt install nmap -y
+**On l’utilise pour :**
+- Savoir quels ordinateurs sont connectés sur un réseau.
+- Découvrir quels ports (portes de communication) sont ouverts ou fermés.
+- Identifier les services en cours d’exécution (exemple : serveur web, serveur FTP, SSH…).
+- Avoir parfois une idée du système d’exploitation utilisé (Windows, Linux, etc.).
+
+En résumé, **Nmap est comme une lampe torche pour voir ce qui se cache sur un réseau.
+C’est pour cela qu’il est indispensable pour les :
+
+- **🔐 Pentesters** (testeurs de sécurité)
+- **👨‍💻 Administrateurs** systèmes/réseaux
+- **🧑‍🎓 Étudiants en cybersécurité.**
+
+**⚠️ Attention**: Nmap doit être utilisé uniquement sur des réseaux que tu as l’autorisation de scanner.
+Sinon, cela peut être considéré comme une tentative d’attaque.
