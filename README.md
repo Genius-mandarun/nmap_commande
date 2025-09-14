@@ -135,5 +135,56 @@ C’est l’équivalent d’un “ping sweep” : balayer une plage d’adresses
    - comprendre comment Nmap a détecté un hôte.
 
 ---
- ## Les 6 états de ports dans Nmap
- 
+## Les 6 états de ports dans Nmap
+- **Ouvert (open)** : une application est à l’écoute et accepte les connexions (TCP ou UDP).
+- **Fermé (closed)** : Le port répond, mais aucun service n'écoute
+- **Filtré (filtered)** : Nmap ne reçoit aucune réponse, ou bien un message ICMP disant que la communication est bloquée.
+- **Non-filtré (unfiltered)** : le port est accessible, mais Nmap ne peut pas dire s’il est ouvert ou fermé.
+- **Ouvert | Filtré (open|filtered)** : Nmap n’arrive pas à décider si le port est ouvert ou filtré, car les deux cas ne répondent pas.
+
+---
+## Techniques de scan de ports dans Nmap
+- **-sS** : Scan SYN (demi-ouvert)
+    - Principe : envoie un SYN, attend la réponse :
+      - SYN/ACK → port ouvert
+      - RST → port fermé
+      - Pas de réponse → filtré
+
+- **-sT** : Scan TCP connect()
+    - Principe : demande directement au système (API sockets) d’ouvrir une connexion → donc connexion complète (SYN → SYN/ACK → ACK).
+    - plus lent, plus bruyant (chaque tentative est loggée par la cible).
+
+- **sU** : Scan UDP
+  - Principe : envoie un paquet UDP vide
+      - ICMP “port unreachable” → fermé
+      - Réponse UDP → ouvert
+      - Pas de réponse → open|filtered
+
+- **-sN, -sF, -sX** : Scans furtifs RFC (Null, FIN, Xmas)
+    - Principe : envoie des paquets bizarres (sans SYN/ACK, ou avec FIN/URG/PSH).
+    - inefficace sur Windows et Cisco (qui répondent toujours RST).
+
+- **-sA** : Scan ACK
+  - cartographie les règles de firewall (stateful/stateless).
+  - ne donne pas “open/closed”.
+  - Sert pour comprendre la topologie firewall.
+
+- **--scanflags** : Scan personnalisé
+  - tu choisis toi-même les drapeaux TCP.
+  - permet de tromper IDS/firewalls mal configurés.
+  - demande de l’expérience.
+  - variable (peut être très furtif ou très bruyant).
+
+- **-sI** : Idle scan (scan zombie)
+  - utilise un “zombie” (machine tierce) → ta cible croit être scannée par lui.
+  - ultra furtif 🕵️ (ton IP n’apparaît jamais).
+  - trouver un zombie valide est difficile.
+
+- **-sO** : Scan du protocole IP
+  - teste quels protocoles IP (TCP, UDP, ICMP, IGMP…) sont supportés.
+  - Utile pour cartographie bas niveau.
+
+**NB** : 
+- Pour 80% des cas → utilise -sS (rapide + discret).
+- Pour UDP → combine -sS -sU.
+- Pour furtivité → pense au -sI (idle scan).
