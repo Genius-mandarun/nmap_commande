@@ -1,3 +1,4 @@
+<img width="2500" height="1307" alt="image" src="https://github.com/user-attachments/assets/7c71f1cd-27c6-4a50-9ad8-070282be4702" />
 # 🔍 Guide d’Introduction à Nmap
 
 ## 📌 Version
@@ -192,6 +193,7 @@ C’est l’équivalent d’un “ping sweep” : balayer une plage d’adresses
 ---
 ## Détection de services et de versions
 
+- **-sV** : 
 ---
 ## Détection OS 
 
