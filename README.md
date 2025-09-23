@@ -193,24 +193,70 @@ C’est l’équivalent d’un “ping sweep” : balayer une plage d’adresses
 ---
 ## Détection de services et de versions
 
-- **-sV** : 
+- **-sV** :  Permet de detecter la version
+  - **But** : interroger les ports découverts pour connaître le service et la version.
+  - **Pour qui** : admins, pentesters (avec autorisation), inventaires.
+  - Envoie plusieurs requêtes, donc visible dans les logs.
+
+- **--version-intensity <0–9>** :
+  - sert à régler la quantité d’efforts que l’outil va mettre pour identifier la version exacte d’un service qui tourne sur un port.
+  - choisir combien de tests/probes Nmap va essayer (0 = très peu, 9 = tout).
+  - Taux de détection :
+      - 0–2 : faible → moyen
+      - 3–6 : moyen
+      - 7–9 : élevé
+  - plus l’intensité monte, plus on est bruyant.
+
+- **--version-light** :
+  - Raccourci pour --version-intensity 2.
+  -  il peut rater des versions que --version-all ou une intensité élevée auraient trouvées.
+
+
+- **--version-all** :
+  - raccourci pour --version-intensity 9.
+
+- **--version-trace** :
+  - affiche tout ce que Nmap envoie/reçoit lors de la détection (debugging).
+
 ---
 ## Détection OS 
 
+- **-O** : demander à Nmap d’essayer d’identifier le système d’exploitation distant.
+- **--osscan-limit** :  n’essaye l’OS detection que si Nmap a trouvé au moins un port ouvert ET un port fermé (ou conditions favorables).
+  - Permet de gagner du temps et éviter le faux positif
+  - améliore la discrétion globale parce qu’on évite de lancer des tests OS inutiles.
+
+- **--max-os-tries <n>** : nombre max de tentatives OS
+  - contrôler combien de fois Nmap retentera la détection d’OS sur une cible.
+  - 
 ---
 ## Nmap Scripting Engine (NSE)
+
+- **--script <catégories|répertoire|nom|all>** :  contrôle précisément quels scripts exécuter : noms, catégories (ex: vuln), répertoire local, ou all
+
+  - **Pour qui :** admins / pentesters qui veulent cibler un type précis de test.
+  
+  - **Taux d’utilité :** très élevé si tu choisis des scripts pertinents.
+  
+  - **Discrétion :** dépend des scripts choisis — vuln et intrusive sont bruyants.
+
+- **--script-args=<name1=value1,name2={...}>** : Passe des paramètres aux scripts (login, mot de passe, options spécifiques).
+  - nécessaire pour scripts qui requièrent des credentials ou configuration (bruteforce, auth tests).
+
 
 ---
 ## Timing et Performances
 
 ---
 ## Évitement de pare-feux/IDS et mystification
+Les options d’« évasion » ne rendent pas un scan invisible : elles modifient le signal pour contourner des règles mal conçues, tester une défense, ou ralentir la détection. Elles peuvent toutefois produire des effets indésirables (crashs, imprécisions) et déclencher des mesures légales si utilisées sans droit.
 
----
-## Comptes rendus
+- **-f (fragmentation) et --mtu <taille>** :  découpe les paquets IP en petits fragments (par défaut 8 bytes après l’en-tête, -f deux fois = 16, ou --mtu pour valeur précise).
 
----
-## Interaction à la volée
+- **-D <decoy1,decoy2,...,ME>** :  ajoute des adresses IP leurres dans le scan pour masquer l’origine réelle.
+
+- **-S <IP>** :  falsifie l’adresse IP source utilisée pour envoyer les paquets.
+
 
 ---
 ## 
